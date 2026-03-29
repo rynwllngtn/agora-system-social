@@ -9,11 +9,16 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.
 ## [Unreleased]
 
 ### Added
+- Implementação do endpoint *GET /users/{id}/posts*.
+- Adicionado atributo *posts* em entidade `Profile`.
 - Implementação do padrão DTO para abstração e encapsulamento de `Profile`, aparecendo como `AuthorDTO`, em sua relação com `Post`.
 - Criação da entidade `Post`, com classe `repository` respectiva.
 
 ### Changed
 - Alterado a função `DatabaseSeeder` para popular o banco com nova entidade `Post`.
+
+### Fixed
+- Adicionado comentário para esclarecimento de atributo ambíguo.
 
 ---
 

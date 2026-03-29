@@ -43,6 +43,8 @@ public class DatabaseSeeder implements CommandLineRunner {
             post.setDate(new Date());
             postRepository.save(post);
 
+            profile.getPosts().add(post);
+            profileRepository.save(profile);
         }
 
         IO.println("Database seeded successfully!");

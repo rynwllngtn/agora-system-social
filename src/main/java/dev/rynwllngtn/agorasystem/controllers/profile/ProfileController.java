@@ -1,5 +1,6 @@
 package dev.rynwllngtn.agorasystem.controllers.profile;
 
+import dev.rynwllngtn.agorasystem.entities.post.Post;
 import dev.rynwllngtn.agorasystem.entities.profile.Profile;
 import dev.rynwllngtn.agorasystem.services.profile.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,12 @@ public class ProfileController {
     public ResponseEntity<Profile> update(@RequestBody Profile profile, @PathVariable String id) {
         profile = profileService.update(id, profile);
         return ResponseEntity.ok().body(profile);
+    }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        Profile profile = profileService.findById(id);
+        return ResponseEntity.ok().body(profile.getPosts());
     }
 
 }
