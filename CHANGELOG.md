@@ -6,6 +6,17 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.
 
 ---
 
+## [Unreleased]
+
+### Added
+- Implementação do padrão DTO para abstração e encapsulamento de `Profile`, aparecendo como `AuthorDTO`, em sua relação com `Post`.
+- Criação da entidade `Post`, com classe `repository` respectiva.
+
+### Changed
+- Alterado a função `DatabaseSeeder` para popular o banco com nova entidade `Post`.
+
+---
+
 ## [0.1.0] - 2026-03-29
 
 ### Added
