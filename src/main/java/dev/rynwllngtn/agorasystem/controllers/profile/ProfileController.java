@@ -42,4 +42,10 @@ public class ProfileController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Profile> update(@RequestBody Profile profile, @PathVariable String id) {
+        profile = profileService.update(id, profile);
+        return ResponseEntity.ok().body(profile);
+    }
+
 }

@@ -49,7 +49,15 @@ public class ProfileServiceImplementation implements ProfileService {
 
     @Override
     public Profile update(String id, Profile profile) {
-        return null;
+        Profile updatedProfile = findById(id);
+        updateData(updatedProfile, profile);
+        return profileRepository.save(updatedProfile);
+    }
+
+    private void updateData(Profile profile, Profile newData) {
+        profile.setUserName(newData.getUserName());
+        profile.setBirthDate(newData.getBirthDate());
+        profile.setActive(newData.isActive());
     }
 
 }
