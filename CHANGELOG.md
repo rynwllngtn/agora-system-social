@@ -6,6 +6,17 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.
 
 ---
 
+## [Unreleased]
+
+### Added
+- Adicionado atributo *List<Comment> comments* em entidade `Post`.
+- Criação de entidade `Comment`, com classe `repository` respectiva.
+
+### Changed
+- Alterado a função `DatabaseSeeder` para popular o banco com nova entidade `Comment`.
+
+---
+
 ## [0.2.0] - 2026-03-30
 
 ### Added
