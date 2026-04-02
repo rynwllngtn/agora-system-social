@@ -1,7 +1,7 @@
 package dev.rynwllngtn.agorasystem.entities.comment;
 
 import dev.rynwllngtn.agorasystem.dtos.post.AuthorDTO;
-import dev.rynwllngtn.agorasystem.dtos.profile.PostAddressDTO;
+import dev.rynwllngtn.agorasystem.dtos.profile.ProfilePostDTO;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -20,7 +20,7 @@ public class Comment {
     @Id
     private String id;
     private AuthorDTO author;
-    private PostAddressDTO post;
+    private ProfilePostDTO post;
     private Date date;
     private String body;
 

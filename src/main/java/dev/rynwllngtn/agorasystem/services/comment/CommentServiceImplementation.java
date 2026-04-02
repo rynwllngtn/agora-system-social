@@ -1,7 +1,7 @@
 package dev.rynwllngtn.agorasystem.services.comment;
 
 import dev.rynwllngtn.agorasystem.dtos.post.AuthorDTO;
-import dev.rynwllngtn.agorasystem.dtos.profile.PostAddressDTO;
+import dev.rynwllngtn.agorasystem.dtos.profile.ProfilePostDTO;
 import dev.rynwllngtn.agorasystem.entities.comment.Comment;
 import dev.rynwllngtn.agorasystem.entities.post.Post;
 import dev.rynwllngtn.agorasystem.entities.profile.Profile;
@@ -45,13 +45,12 @@ public class CommentServiceImplementation implements CommentService {
     public Comment insert(Comment comment) {
 
         try {
-            Profile profile = profileService.findById(comment.getAuthor().getId());
-            AuthorDTO author = new AuthorDTO(profile);
+            AuthorDTO author = profileService.findAuthorById(comment.getAuthor().getId());
             comment.setAuthor(author);
             comment.setDate(new Date());
 
             Post post = postService.findById(comment.getPost().getId());
-            PostAddressDTO postDTO = new PostAddressDTO(post);
+            ProfilePostDTO postDTO = new ProfilePostDTO(post);
             comment.setPost(postDTO);
 
             return commentRepository.insert(comment);

@@ -1,15 +1,11 @@
 package dev.rynwllngtn.agorasystem.entities.post;
 
 import dev.rynwllngtn.agorasystem.dtos.post.AuthorDTO;
-import dev.rynwllngtn.agorasystem.entities.comment.Comment;
 import lombok.*;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter

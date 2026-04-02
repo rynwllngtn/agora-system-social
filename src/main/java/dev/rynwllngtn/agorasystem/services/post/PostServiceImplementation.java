@@ -1,9 +1,8 @@
 package dev.rynwllngtn.agorasystem.services.post;
 
 import dev.rynwllngtn.agorasystem.dtos.post.AuthorDTO;
-import dev.rynwllngtn.agorasystem.dtos.profile.PostAddressDTO;
+import dev.rynwllngtn.agorasystem.dtos.profile.ProfilePostDTO;
 import dev.rynwllngtn.agorasystem.entities.post.Post;
-import dev.rynwllngtn.agorasystem.entities.profile.Profile;
 import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.ObjectConstrainException;
 import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.ObjectNotFoundException;
 import dev.rynwllngtn.agorasystem.repositories.post.PostRepository;
@@ -40,8 +39,7 @@ public class PostServiceImplementation implements PostService {
     public Post insert(Post post) {
 
         try {
-            Profile profile = profileService.findById(post.getAuthor().getId());
-            AuthorDTO author = new AuthorDTO(profile);
+            AuthorDTO author = profileService.findAuthorById(post.getAuthor().getId());
             post.setAuthor(author);
             post.setDate(new Date());
             postRepository.insert(post);
@@ -70,7 +68,7 @@ public class PostServiceImplementation implements PostService {
     }
 
     @Override
-    public List<PostAddressDTO> findPostsByAuthorId(String id) {
+    public List<ProfilePostDTO> findPostsByAuthorId(String id) {
         return postRepository.findPostsByAuthorId(id);
     }
 

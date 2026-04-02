@@ -1,5 +1,7 @@
 package dev.rynwllngtn.agorasystem.services.profile;
 
+import dev.rynwllngtn.agorasystem.dtos.post.AuthorDTO;
+import dev.rynwllngtn.agorasystem.dtos.profile.ProfileDTO;
 import dev.rynwllngtn.agorasystem.entities.profile.Profile;
 import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.ObjectConstrainException;
 import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.ObjectNotFoundException;
@@ -8,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,14 +19,9 @@ public class ProfileServiceImplementation implements ProfileService {
     private ProfileRepository profileRepository;
 
     @Override
-    public List<Profile> findAll() {
-        return profileRepository.findAll();
-    }
-
-    @Override
-    public Profile findById(String id) {
-        Optional<Profile> profile = profileRepository.findById(id);
-        return profile.orElseThrow(() -> new ObjectNotFoundException(Profile.class, id));
+    public ProfileDTO findById(String id) {
+        Optional<ProfileDTO> profileDTO = profileRepository.findProfileById(id);
+        return profileDTO.orElseThrow(() -> new ObjectNotFoundException(Profile.class, id));
     }
 
     @Override
@@ -50,10 +46,15 @@ public class ProfileServiceImplementation implements ProfileService {
     }
 
     @Override
-    public Profile update(String id, Profile data) {
-        Profile profile = findById(id);
-        profile.update(data);
+    public Profile update(String id, ProfileDTO profileDTO) {
+        Profile profile = profileRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException(Profile.class, id));
+        profile.update(profileDTO);
         return profileRepository.save(profile);
+    }
+
+    @Override
+    public AuthorDTO findAuthorById(String id) {
+        return profileRepository.findAuthorById(id).orElseThrow(() -> new ObjectNotFoundException(Profile.class, id));
     }
 
 }

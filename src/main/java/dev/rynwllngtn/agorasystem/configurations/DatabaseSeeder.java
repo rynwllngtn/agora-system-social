@@ -12,7 +12,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Date;
-import java.util.Random;
 import java.util.UUID;
 
 @Configuration

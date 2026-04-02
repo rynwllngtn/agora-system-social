@@ -1,6 +1,6 @@
 package dev.rynwllngtn.agorasystem.services.post;
 
-import dev.rynwllngtn.agorasystem.dtos.profile.PostAddressDTO;
+import dev.rynwllngtn.agorasystem.dtos.profile.ProfilePostDTO;
 import dev.rynwllngtn.agorasystem.entities.post.Post;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +19,6 @@ public interface PostService {
 
     public Post update(String id, Post post);
 
-    public List<PostAddressDTO> findPostsByAuthorId(String id);
+    public List<ProfilePostDTO> findPostsByAuthorId(String id);
 
 }

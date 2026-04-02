@@ -9,10 +9,13 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.
 ## [Unreleased]
 
 ### Changed
+- Alterado nome do atributo *isActive* para *active*, mantendo o padrão nativo do framework.
+- Alterado o retorno de endpoints para `ProfileDTO`, adicionando uma camada de segurança.
 - Reorganizado a classe `DatabaseSeeder`, separando a criação de entidade em métodos.
 
 ### Removed
-- Removido atributos List<> de entidades `Profile` e `Post`
+- Removido services e controllers findAll para `Profile`.
+- Removido atributos List<> de entidades `Profile` e `Post`.
 
 ---
 

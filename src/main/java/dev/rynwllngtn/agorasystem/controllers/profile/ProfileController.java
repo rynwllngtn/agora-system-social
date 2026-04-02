@@ -1,6 +1,7 @@
 package dev.rynwllngtn.agorasystem.controllers.profile;
 
-import dev.rynwllngtn.agorasystem.dtos.profile.PostAddressDTO;
+import dev.rynwllngtn.agorasystem.dtos.profile.ProfileDTO;
+import dev.rynwllngtn.agorasystem.dtos.profile.ProfilePostDTO;
 import dev.rynwllngtn.agorasystem.entities.profile.Profile;
 import dev.rynwllngtn.agorasystem.services.post.PostService;
 import dev.rynwllngtn.agorasystem.services.profile.ProfileService;
@@ -22,23 +23,18 @@ public class ProfileController {
     @Autowired
     private PostService postService;
 
-    @GetMapping
-    public ResponseEntity<List<Profile>> findAll() {
-        List<Profile> profiles = profileService.findAll();
-        return ResponseEntity.ok().body(profiles);
-    }
-
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Profile> findById(@PathVariable String id) {
-        Profile profile = profileService.findById(id);
-        return ResponseEntity.ok().body(profile);
+    public ResponseEntity<ProfileDTO> findById(@PathVariable String id) {
+        ProfileDTO profileDTO = profileService.findById(id);
+        return ResponseEntity.ok().body(profileDTO);
     }
 
     @PostMapping
-    public ResponseEntity<Profile> insert(@RequestBody Profile profile) {
-        profile = profileService.insert(profile);
+    public ResponseEntity<ProfileDTO> insert(@RequestBody Profile profile) {
+        profileService.insert(profile);
+        ProfileDTO profileDTO = new ProfileDTO(profile);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(profile.getId()).toUri();
-        return ResponseEntity.created(uri).body(profile);
+        return ResponseEntity.created(uri).body(profileDTO);
     }
 
     @DeleteMapping(value = "/{id}")
@@ -48,14 +44,14 @@ public class ProfileController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Profile> update(@RequestBody Profile profile, @PathVariable String id) {
-        profile = profileService.update(id, profile);
-        return ResponseEntity.ok().body(profile);
+    public ResponseEntity<ProfileDTO> update(@RequestBody ProfileDTO profileDTO, @PathVariable String id) {
+        profileService.update(id, profileDTO);
+        return ResponseEntity.ok().body(profileDTO);
     }
 
     @GetMapping(value = "/{id}/posts")
-    public ResponseEntity<List<PostAddressDTO>> findAllPosts(@PathVariable String id) {
-        List<PostAddressDTO> posts = postService.findPostsByAuthorId(id);
+    public ResponseEntity<List<ProfilePostDTO>> findAllPosts(@PathVariable String id) {
+        List<ProfilePostDTO> posts = postService.findPostsByAuthorId(id);
         return ResponseEntity.ok().body(posts);
     }
 
