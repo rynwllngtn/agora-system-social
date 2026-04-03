@@ -1,6 +1,7 @@
 package dev.rynwllngtn.agorasystem.services.post;
 
 import dev.rynwllngtn.agorasystem.dtos.AuthorDTO;
+import dev.rynwllngtn.agorasystem.dtos.comment.CommentPostDTO;
 import dev.rynwllngtn.agorasystem.dtos.post.PostDTO;
 import dev.rynwllngtn.agorasystem.dtos.profile.ProfilePostDTO;
 import dev.rynwllngtn.agorasystem.entities.post.Post;
@@ -63,6 +64,11 @@ public class PostServiceImplementation implements PostService {
     @Override
     public List<ProfilePostDTO> findPostsByAuthorId(String id) {
         return postRepository.findPostsByAuthorId(id);
+    }
+
+    @Override
+    public CommentPostDTO findCommentPostById(String id) {
+        return postRepository.findCommentPostById(id);
     }
 
 }

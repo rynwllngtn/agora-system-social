@@ -9,14 +9,17 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.
 ## [Unreleased]
 
 ### Added
-- Implementação de consultas customizadas no `ProfileRepository` e `PostRepository` para converter dados diretamente da base para DTOs.
-- Criação do método `findAuthorById` no `ProfileService`, usado por `PostService` e `CommentService` buscarem autores sem expor a entidade completa.
-- Criação das classes `ProfilePostDTO` e `PostAddressDTO`, garantindo JSONs enxutos.
+- Configuração do `MongoConfiguration` e implementação da anotação `@CreatedDate` na entidade `Post`, delegando o controle de tempo para o framework.
+- Implementação de consultas customizadas no `ProfileRepository`, `PostRepository` e `CommentRepository` para converter dados diretamente da base para DTOs.
+- Criação do método `findAuthorById` no `ProfileService`, usado por `PostService` e `CommentService` para buscar referências de autores sem expor a entidade completa.
+- Criação das classes estruturais `ProfilePostDTO`, `PostAddressDTO`, `PostDTO` e `PostCommentDTO`, garantindo JSONs enxutos e blindagem de dados.
 
 ### Changed
-- Alterado nome do atributo *isActive* para *active*, mantendo o padrão nativo do framework.
-- Alterado o retorno de endpoints para `ProfileDTO`, adicionando uma camada de segurança.
-- Reorganizado a classe `DatabaseSeeder`, separando a criação de entidade em métodos.
+- Migração do campo de data da entidade `Post` de `Date` para `Instant`, adequando-se ao padrão moderno do Java.
+- Refatoração dos métodos em `ProfileController`, `PostController` para que todos os retornos de endpoints devolvam DTOs, adicionando uma camada de segurança.
+- Alterado nome do atributo *isActive* para *active* na entidade `Profile`, mantendo o padrão nativo do framework.
+- Modificado o endpoint update das entidades para transitar dados de forma segura utilizando DTOs em vez das entidades originais.
+- Reorganizado a classe `DatabaseSeeder`, separando a criação de entidades em métodos independentes.
 
 ### Removed
 - Removido services e controllers findAll para `Profile`.

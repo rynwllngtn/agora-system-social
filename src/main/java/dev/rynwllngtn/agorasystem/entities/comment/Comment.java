@@ -1,12 +1,15 @@
 package dev.rynwllngtn.agorasystem.entities.comment;
 
 import dev.rynwllngtn.agorasystem.dtos.AuthorDTO;
+import dev.rynwllngtn.agorasystem.dtos.comment.CommentDTO;
+import dev.rynwllngtn.agorasystem.dtos.comment.CommentPostDTO;
 import dev.rynwllngtn.agorasystem.dtos.profile.ProfilePostDTO;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import java.time.Instant;
 
 @Getter
 @Setter
@@ -20,12 +23,14 @@ public class Comment {
     @Id
     private String id;
     private AuthorDTO author;
-    private ProfilePostDTO post;
-    private Date date;
+    private CommentPostDTO post;
+
+    @CreatedDate
+    private Instant date;
     private String body;
 
-    public void update(Comment data) {
-        body = data.getBody();
+    public void update(CommentDTO commentDTO) {
+        body = commentDTO.getBody();
     }
 
 }

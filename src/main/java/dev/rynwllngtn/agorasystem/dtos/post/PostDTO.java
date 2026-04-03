@@ -17,6 +17,7 @@ public class PostDTO {
     private String body;
 
     public PostDTO(Post post) {
+        date = post.getDate();
         title = post.getTitle();
         body = post.getBody();
     }
