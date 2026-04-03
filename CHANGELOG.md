@@ -9,20 +9,22 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.
 ## [Unreleased]
 
 ### Added
+- Criação dos endpoints de listagem para buscar todos os `Comment` relacionados a um `Post` ou `Profile` específico, garantindo o acesso aos dados após a remoção das listas embutidas nas entidades.
+- Criação de novos métodos de comunicação interna no `PostService` e novos mapeamentos de rota no `ProfileController`.
 - Configuração do `MongoConfiguration` e implementação da anotação `@CreatedDate` na entidade `Post`, delegando o controle de tempo para o framework.
 - Implementação de consultas customizadas no `ProfileRepository`, `PostRepository` e `CommentRepository` para converter dados diretamente da base para DTOs.
 - Criação do método `findAuthorById` no `ProfileService`, usado por `PostService` e `CommentService` para buscar referências de autores sem expor a entidade completa.
-- Criação das classes estruturais `ProfilePostDTO`, `PostAddressDTO`, `PostDTO` e `PostCommentDTO`, garantindo JSONs enxutos e blindagem de dados.
+- Criação das classes `ProfilePostDTO`, `PostAddressDTO`, `PostDTO` e `PostCommentDTO`, `CommentDTO` e `CommentPostDTO`, garantindo JSONs enxutos e blindagem de dados.
 
 ### Changed
-- Migração do campo de data da entidade `Post` de `Date` para `Instant`, adequando-se ao padrão moderno do Java.
-- Refatoração dos métodos em `ProfileController`, `PostController` para que todos os retornos de endpoints devolvam DTOs, adicionando uma camada de segurança.
+- Refatoração dos métodos em `ProfileController`, `PostController` e `CommentController` para que todos os retornos de endpoints devolvam DTOs, adicionando uma camada de segurança.
+- Migração do campo de data das entidades `Post` e `Comment` de `Date` para `Instant`, adequando-se ao padrão moderno do Java.
 - Alterado nome do atributo *isActive* para *active* na entidade `Profile`, mantendo o padrão nativo do framework.
 - Modificado o endpoint update das entidades para transitar dados de forma segura utilizando DTOs em vez das entidades originais.
-- Reorganizado a classe `DatabaseSeeder`, separando a criação de entidades em métodos independentes.
+- Reorganizado a classe `DatabaseSeeder`, separando a criação de entidades em métodos independentes e ajustando o relacionamento entre entidades.
 
 ### Removed
-- Removido services e controllers findAll para `Profile`.
+- Removido services e controllers findAll para `Profile`, `Post` e `Comment`.
 - Removido atributos List<> de entidades `Profile` e `Post`.
 
 ---
