@@ -3,7 +3,6 @@ package dev.rynwllngtn.agorasystem.entities.comment;
 import dev.rynwllngtn.agorasystem.dtos.AuthorDTO;
 import dev.rynwllngtn.agorasystem.dtos.comment.CommentDTO;
 import dev.rynwllngtn.agorasystem.dtos.comment.CommentPostDTO;
-import dev.rynwllngtn.agorasystem.dtos.profile.ProfilePostDTO;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;

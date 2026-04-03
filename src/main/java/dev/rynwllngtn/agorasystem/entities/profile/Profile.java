@@ -1,7 +1,7 @@
 package dev.rynwllngtn.agorasystem.entities.profile;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import dev.rynwllngtn.agorasystem.dtos.profile.ProfileDTO;
+import dev.rynwllngtn.agorasystem.dtos.profile.ProfileResponseDTO;
+import dev.rynwllngtn.agorasystem.dtos.profile.ProfileUpdateRequestDTO;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -25,10 +25,16 @@ public class Profile {
     private Date birthDate;
     private boolean active = true;
 
-    public void update(ProfileDTO profileDTO) {
-        userName = profileDTO.getUserName();
-        birthDate = profileDTO.getBirthDate();
-        active = profileDTO.isActive();
+    public Profile(UUID profileOwner, String userName, Date birthDate) {
+        this.profileOwner = profileOwner;
+        this.userName = userName;
+        this.birthDate = birthDate;
+    }
+
+    public void update(ProfileUpdateRequestDTO profileUpdateRequestDTO) {
+        userName = profileUpdateRequestDTO.getUserName();
+        birthDate = profileUpdateRequestDTO.getBirthDate();
+        active = profileUpdateRequestDTO.isActive();
     }
 
 }

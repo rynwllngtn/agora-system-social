@@ -8,13 +8,13 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ProfileDTO {
+public class ProfileResponseDTO {
 
     private String userName;
     private Date birthDate;
     private boolean active;
 
-    public ProfileDTO(Profile profile) {
+    public ProfileResponseDTO(Profile profile) {
         userName = profile.getUserName();
         birthDate = profile.getBirthDate();
         active = profile.isActive();

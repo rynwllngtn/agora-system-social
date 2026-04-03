@@ -1,12 +1,15 @@
 package dev.rynwllngtn.agorasystem.controllers.profile;
 
 import dev.rynwllngtn.agorasystem.dtos.comment.CommentDTO;
-import dev.rynwllngtn.agorasystem.dtos.profile.ProfileDTO;
-import dev.rynwllngtn.agorasystem.dtos.profile.ProfilePostDTO;
+import dev.rynwllngtn.agorasystem.dtos.post.PostDTO;
+import dev.rynwllngtn.agorasystem.dtos.profile.ProfileCreateRequestDTO;
+import dev.rynwllngtn.agorasystem.dtos.profile.ProfileResponseDTO;
+import dev.rynwllngtn.agorasystem.dtos.profile.ProfileUpdateRequestDTO;
 import dev.rynwllngtn.agorasystem.entities.profile.Profile;
 import dev.rynwllngtn.agorasystem.services.comment.CommentService;
 import dev.rynwllngtn.agorasystem.services.post.PostService;
 import dev.rynwllngtn.agorasystem.services.profile.ProfileService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,17 +32,17 @@ public class ProfileController {
     private CommentService commentService;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<ProfileDTO> findById(@PathVariable String id) {
-        ProfileDTO profileDTO = profileService.findById(id);
-        return ResponseEntity.ok().body(profileDTO);
+    public ResponseEntity<ProfileResponseDTO> findById(@PathVariable String id) {
+        ProfileResponseDTO profileResponseDTO = profileService.findById(id);
+        return ResponseEntity.ok().body(profileResponseDTO);
     }
 
     @PostMapping
-    public ResponseEntity<ProfileDTO> insert(@RequestBody Profile profile) {
-        profileService.insert(profile);
-        ProfileDTO profileDTO = new ProfileDTO(profile);
+    public ResponseEntity<ProfileResponseDTO> insert(@RequestBody ProfileCreateRequestDTO profileCreateRequestDTO) {
+        Profile profile = profileService.insert(profileCreateRequestDTO);
+        ProfileResponseDTO profileResponseDTO = new ProfileResponseDTO(profile);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(profile.getId()).toUri();
-        return ResponseEntity.created(uri).body(profileDTO);
+        return ResponseEntity.created(uri).body(profileResponseDTO);
     }
 
     @DeleteMapping(value = "/{id}")
@@ -49,14 +52,15 @@ public class ProfileController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ProfileDTO> update(@RequestBody ProfileDTO profileDTO, @PathVariable String id) {
-        profileService.update(id, profileDTO);
-        return ResponseEntity.ok().body(profileDTO);
+    public ResponseEntity<ProfileResponseDTO> update(@Valid @RequestBody ProfileUpdateRequestDTO profileUpdateRequestDTO, @PathVariable String id) {
+        Profile profile = profileService.update(id, profileUpdateRequestDTO);
+        ProfileResponseDTO profileResponseDTO = new ProfileResponseDTO(profile);
+        return ResponseEntity.ok().body(profileResponseDTO);
     }
 
     @GetMapping(value = "/{id}/posts")
-    public ResponseEntity<List<ProfilePostDTO>> findAllPosts(@PathVariable String id) {
-        List<ProfilePostDTO> posts = postService.findPostsByAuthorId(id);
+    public ResponseEntity<List<PostDTO>> findAllPosts(@PathVariable String id) {
+        List<PostDTO> posts = postService.findPostsByAuthorId(id);
         return ResponseEntity.ok().body(posts);
     }
 

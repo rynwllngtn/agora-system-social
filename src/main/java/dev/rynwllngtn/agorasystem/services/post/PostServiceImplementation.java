@@ -3,7 +3,6 @@ package dev.rynwllngtn.agorasystem.services.post;
 import dev.rynwllngtn.agorasystem.dtos.AuthorDTO;
 import dev.rynwllngtn.agorasystem.dtos.comment.CommentPostDTO;
 import dev.rynwllngtn.agorasystem.dtos.post.PostDTO;
-import dev.rynwllngtn.agorasystem.dtos.profile.ProfilePostDTO;
 import dev.rynwllngtn.agorasystem.entities.post.Post;
 import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.ObjectConstrainException;
 import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.ObjectNotFoundException;
@@ -62,7 +61,7 @@ public class PostServiceImplementation implements PostService {
     }
 
     @Override
-    public List<ProfilePostDTO> findPostsByAuthorId(String id) {
+    public List<PostDTO> findPostsByAuthorId(String id) {
         return postRepository.findPostsByAuthorId(id);
     }
 

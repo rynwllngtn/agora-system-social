@@ -1,7 +1,9 @@
 package dev.rynwllngtn.agorasystem.services.profile;
 
 import dev.rynwllngtn.agorasystem.dtos.AuthorDTO;
-import dev.rynwllngtn.agorasystem.dtos.profile.ProfileDTO;
+import dev.rynwllngtn.agorasystem.dtos.profile.ProfileCreateRequestDTO;
+import dev.rynwllngtn.agorasystem.dtos.profile.ProfileResponseDTO;
+import dev.rynwllngtn.agorasystem.dtos.profile.ProfileUpdateRequestDTO;
 import dev.rynwllngtn.agorasystem.entities.profile.Profile;
 import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.ObjectConstrainException;
 import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.ObjectNotFoundException;
@@ -19,15 +21,20 @@ public class ProfileServiceImplementation implements ProfileService {
     private ProfileRepository profileRepository;
 
     @Override
-    public ProfileDTO findById(String id) {
-        Optional<ProfileDTO> profileDTO = profileRepository.findProfileById(id);
-        return profileDTO.orElseThrow(() -> new ObjectNotFoundException(Profile.class, id));
+    public ProfileResponseDTO findById(String id) {
+        Optional<ProfileResponseDTO> profileResponseDTO = profileRepository.findProfileById(id);
+        return profileResponseDTO.orElseThrow(() -> new ObjectNotFoundException(Profile.class, id));
     }
 
     @Override
-    public Profile insert(Profile profile) {
+    public Profile insert(ProfileCreateRequestDTO profileCreateRequestDTO) {
 
         try {
+            Profile profile = new Profile(profileCreateRequestDTO.getProfileOwner(),
+                                          profileCreateRequestDTO.getUserName(),
+                                          profileCreateRequestDTO.getBirthDate());
+
+
             return profileRepository.insert(profile);
         }
         catch (DuplicateKeyException e) {
@@ -46,9 +53,9 @@ public class ProfileServiceImplementation implements ProfileService {
     }
 
     @Override
-    public Profile update(String id, ProfileDTO profileDTO) {
+    public Profile update(String id, ProfileUpdateRequestDTO profileUpdateRequestDTO) {
         Profile profile = profileRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException(Profile.class, id));
-        profile.update(profileDTO);
+        profile.update(profileUpdateRequestDTO);
         return profileRepository.save(profile);
     }
 
