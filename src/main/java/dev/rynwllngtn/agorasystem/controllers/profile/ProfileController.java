@@ -1,8 +1,10 @@
 package dev.rynwllngtn.agorasystem.controllers.profile;
 
+import dev.rynwllngtn.agorasystem.dtos.comment.CommentDTO;
 import dev.rynwllngtn.agorasystem.dtos.profile.ProfileDTO;
 import dev.rynwllngtn.agorasystem.dtos.profile.ProfilePostDTO;
 import dev.rynwllngtn.agorasystem.entities.profile.Profile;
+import dev.rynwllngtn.agorasystem.services.comment.CommentService;
 import dev.rynwllngtn.agorasystem.services.post.PostService;
 import dev.rynwllngtn.agorasystem.services.profile.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class ProfileController {
 
     @Autowired
     private PostService postService;
+
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<ProfileDTO> findById(@PathVariable String id) {
@@ -53,6 +58,12 @@ public class ProfileController {
     public ResponseEntity<List<ProfilePostDTO>> findAllPosts(@PathVariable String id) {
         List<ProfilePostDTO> posts = postService.findPostsByAuthorId(id);
         return ResponseEntity.ok().body(posts);
+    }
+
+    @GetMapping(value = "/{id}/comments")
+    public ResponseEntity<List<CommentDTO>> findAllComments(@PathVariable String id) {
+        List<CommentDTO> comments = commentService.findCommentsByAuthorId(id);
+        return ResponseEntity.ok().body(comments);
     }
 
 }

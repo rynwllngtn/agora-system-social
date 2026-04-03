@@ -1,5 +1,6 @@
 package dev.rynwllngtn.agorasystem.repositories.post;
 
+import dev.rynwllngtn.agorasystem.dtos.comment.CommentPostDTO;
 import dev.rynwllngtn.agorasystem.dtos.post.PostDTO;
 import dev.rynwllngtn.agorasystem.dtos.profile.ProfilePostDTO;
 import dev.rynwllngtn.agorasystem.entities.post.Post;
@@ -18,5 +19,8 @@ public interface PostRepository extends MongoRepository<Post, String> {
 
     @Query(value = "{ 'author._id' : ?0 }", fields = "{ '_id': 1, 'body': 1 }")
     public List<ProfilePostDTO> findPostsByAuthorId(String id);
+
+    @Query(value = "{ '_id' : ?0 }", fields = "{ '_id': 1, 'body': 1 }")
+    public CommentPostDTO findCommentPostById(String id);
 
 }
