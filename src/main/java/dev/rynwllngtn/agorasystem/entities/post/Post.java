@@ -1,7 +1,6 @@
 package dev.rynwllngtn.agorasystem.entities.post;
 
-import dev.rynwllngtn.agorasystem.dtos.AuthorDTO;
-import dev.rynwllngtn.agorasystem.dtos.post.PostResponseDTO;
+import dev.rynwllngtn.agorasystem.dtos.profile.ProfileReferenceDTO;
 import dev.rynwllngtn.agorasystem.dtos.post.PostUpdateRequestDTO;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -9,7 +8,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -22,14 +20,14 @@ public class Post {
     @EqualsAndHashCode.Include
     @Id
     private String id;
-    private AuthorDTO author;
+    private ProfileReferenceDTO author;
 
     @CreatedDate
     private Instant date;
     private String title;
     private String body;
 
-    public Post(AuthorDTO author, String title, String body) {
+    public Post(ProfileReferenceDTO author, String title, String body) {
         this.author = author;
         this.title = title;
         this.body = body;

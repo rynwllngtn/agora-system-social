@@ -1,7 +1,7 @@
 package dev.rynwllngtn.agorasystem.services.post;
 
-import dev.rynwllngtn.agorasystem.dtos.comment.CommentPostDTO;
 import dev.rynwllngtn.agorasystem.dtos.post.PostCreateRequestDTO;
+import dev.rynwllngtn.agorasystem.dtos.post.PostReferenceDTO;
 import dev.rynwllngtn.agorasystem.dtos.post.PostResponseDTO;
 import dev.rynwllngtn.agorasystem.dtos.post.PostUpdateRequestDTO;
 import dev.rynwllngtn.agorasystem.entities.post.Post;
@@ -22,6 +22,6 @@ public interface PostService {
 
     public List<PostResponseDTO> findPostsByAuthorId(String id);
 
-    public CommentPostDTO findCommentPostById(String id);
+    public PostReferenceDTO findReferenceById(String id);
 
 }

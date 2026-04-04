@@ -1,6 +1,5 @@
 package dev.rynwllngtn.agorasystem.entities.profile;
 
-import dev.rynwllngtn.agorasystem.dtos.profile.ProfileResponseDTO;
 import dev.rynwllngtn.agorasystem.dtos.profile.ProfileUpdateRequestDTO;
 import lombok.*;
 import org.springframework.data.annotation.Id;

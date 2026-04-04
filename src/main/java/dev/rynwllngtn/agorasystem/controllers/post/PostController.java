@@ -1,6 +1,6 @@
 package dev.rynwllngtn.agorasystem.controllers.post;
 
-import dev.rynwllngtn.agorasystem.dtos.comment.CommentDTO;
+import dev.rynwllngtn.agorasystem.dtos.comment.CommentResponseDTO;
 import dev.rynwllngtn.agorasystem.dtos.post.PostCreateRequestDTO;
 import dev.rynwllngtn.agorasystem.dtos.post.PostResponseDTO;
 import dev.rynwllngtn.agorasystem.dtos.post.PostUpdateRequestDTO;
@@ -41,7 +41,7 @@ public class PostController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable String id) {
+    public ResponseEntity<Void> delete(@PathVariable String id) {
         postService.delete(id);
         return ResponseEntity.noContent().build();
     }
@@ -54,8 +54,8 @@ public class PostController {
     }
 
     @GetMapping(value = "/{id}/comments")
-    public ResponseEntity<List<CommentDTO>> findAllComments(@PathVariable String id) {
-        List<CommentDTO> comments = commentService.findCommentsByPostId(id);
+    public ResponseEntity<List<CommentResponseDTO>> findAllComments(@PathVariable String id) {
+        List<CommentResponseDTO> comments = commentService.findCommentsByPostId(id);
         return ResponseEntity.ok().body(comments);
     }
 

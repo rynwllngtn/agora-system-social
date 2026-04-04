@@ -9,19 +9,22 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.
 ## [0.3.1] - 2026-04-03
 
 ### Added
-- Anotações de validação (@NotBlank, @NotNull) com mensagens customizadas no `ProfileUpdateRequestDTO` e `PostUpdateRequestDTO` e integração com @Valid no endpoint *PUT*.
+- Anotações de validação (@NotBlank, @NotNull) com mensagens customizadas no `ProfileUpdateRequestDTO`, `PostUpdateRequestDTO` e `CommentUpdateRequestDTO` e integração com @Valid no endpoint *PUT*.
+- Classes de transferência de dados `CommentResponseDTO`, `CommentCreateRequestDTO` e `CommentUpdateRequestDTO` para abstrair e proteger a entidade `Comment`.
 - Classes de transferência de dados `PostResponseDTO`, `PostCreateRequestDTO` e `PostUpdateRequestDTO` para abstrair e proteger a entidade `Post`.
 - Classes de transferência de dados `ProfileResponseDTO`, `ProfileCreateRequestDTO` e `ProfileUpdateRequestDTO` para abstrair e proteger a entidade `Profile`.
 - Adicionado dependência **spring-boot-starter-validation** no pom.xml para habilitar a validação de dados.
 
 ### Changed
-- Refatoração das classes `ProfileController` e `PostController` (endpoints GET, POST e PUT) para receber e retornar os novos DTOs, evitando a exposição da entidade Profile.
-- Atualização da assinatura e implementação do `ProfileService` e `PostService`
-- Retorno do endpoint GET /{id}/comments no `PostController` alterado para devolver uma lista de `CommentDTO`.
-- Retorno do endpoint GET /{id}/posts no `ProfileController` alterado para devolver uma lista de `PostDTO`.
+- Refatoração das classes `ProfileController`, `PostController` e  `CommentController` (endpoints GET, POST e PUT) para receber e retornar os novos DTOs, evitando a exposição da entidade Profile.
+- Assinatura e implementação dos novos DTOs em `ProfileService`, `PostService` e `CommentController`.
+- Retorno do endpoint GET /{id}/comments no `PostController` alterado para devolver uma lista de `CommentResponseDTO`.
+- Retorno do endpoint GET /{id}/posts no `ProfileController` alterado para devolver uma lista de `CommentResponseDTO`.
+- Retorno do endpoint GET /{id}/posts no `ProfileController` alterado para devolver uma lista de `PostResponseDTO`.
+- Nomeclatura DTOs `AuthorDTO` para `ProfileReferenceDTO` e `CommentPostDTO` para `PostReferenceDTO`, garantindo melhor clareza.
 
 ### Removed
-- Excluído os DTOs `ProfilePostDTO` e `PostCommentDTO` não usados.
+- DTOs `ProfilePostDTO` e `PostCommentDTO` não usados.
 
 ---
 

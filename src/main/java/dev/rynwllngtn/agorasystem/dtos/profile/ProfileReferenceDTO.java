@@ -1,4 +1,4 @@
-package dev.rynwllngtn.agorasystem.dtos;
+package dev.rynwllngtn.agorasystem.dtos.profile;
 
 import dev.rynwllngtn.agorasystem.entities.profile.Profile;
 import lombok.Getter;
@@ -8,12 +8,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AuthorDTO {
+public class ProfileReferenceDTO {
 
     private String id;
     private String userName;
 
-    public AuthorDTO(Profile profile) {
+    public ProfileReferenceDTO(Profile profile) {
         id = profile.getId();
         userName = profile.getUserName();
     }

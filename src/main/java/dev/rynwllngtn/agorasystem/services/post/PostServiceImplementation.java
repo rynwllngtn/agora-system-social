@@ -1,11 +1,12 @@
 package dev.rynwllngtn.agorasystem.services.post;
 
-import dev.rynwllngtn.agorasystem.dtos.AuthorDTO;
-import dev.rynwllngtn.agorasystem.dtos.comment.CommentPostDTO;
 import dev.rynwllngtn.agorasystem.dtos.post.PostCreateRequestDTO;
+import dev.rynwllngtn.agorasystem.dtos.post.PostReferenceDTO;
 import dev.rynwllngtn.agorasystem.dtos.post.PostResponseDTO;
 import dev.rynwllngtn.agorasystem.dtos.post.PostUpdateRequestDTO;
+import dev.rynwllngtn.agorasystem.dtos.profile.ProfileReferenceDTO;
 import dev.rynwllngtn.agorasystem.entities.post.Post;
+import dev.rynwllngtn.agorasystem.entities.profile.Profile;
 import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.ObjectConstrainException;
 import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.ObjectNotFoundException;
 import dev.rynwllngtn.agorasystem.repositories.post.PostRepository;
@@ -36,7 +37,7 @@ public class PostServiceImplementation implements PostService {
     public Post insert(PostCreateRequestDTO postCreateRequestDTO) {
 
         try {
-            AuthorDTO author = profileService.findAuthorById(postCreateRequestDTO.getAuthor().getId());
+            ProfileReferenceDTO author = profileService.findReferenceById(postCreateRequestDTO.getAuthor());
             Post post = new Post(author,
                                  postCreateRequestDTO.getTitle(),
                                  postCreateRequestDTO.getBody());
@@ -71,8 +72,8 @@ public class PostServiceImplementation implements PostService {
     }
 
     @Override
-    public CommentPostDTO findCommentPostById(String id) {
-        return postRepository.findCommentPostById(id);
+    public PostReferenceDTO findReferenceById(String id) {
+        return postRepository.findReferenceById(id).orElseThrow(() -> new ObjectNotFoundException(Post.class, id));
     }
 
 }

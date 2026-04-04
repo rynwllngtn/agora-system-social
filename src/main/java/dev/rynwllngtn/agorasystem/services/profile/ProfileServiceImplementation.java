@@ -1,7 +1,7 @@
 package dev.rynwllngtn.agorasystem.services.profile;
 
-import dev.rynwllngtn.agorasystem.dtos.AuthorDTO;
 import dev.rynwllngtn.agorasystem.dtos.profile.ProfileCreateRequestDTO;
+import dev.rynwllngtn.agorasystem.dtos.profile.ProfileReferenceDTO;
 import dev.rynwllngtn.agorasystem.dtos.profile.ProfileResponseDTO;
 import dev.rynwllngtn.agorasystem.dtos.profile.ProfileUpdateRequestDTO;
 import dev.rynwllngtn.agorasystem.entities.profile.Profile;
@@ -59,8 +59,8 @@ public class ProfileServiceImplementation implements ProfileService {
     }
 
     @Override
-    public AuthorDTO findAuthorById(String id) {
-        return profileRepository.findAuthorById(id).orElseThrow(() -> new ObjectNotFoundException(Profile.class, id));
+    public ProfileReferenceDTO findReferenceById(String id) {
+        return profileRepository.findReferenceById(id).orElseThrow(() -> new ObjectNotFoundException(Profile.class, id));
     }
 
 }

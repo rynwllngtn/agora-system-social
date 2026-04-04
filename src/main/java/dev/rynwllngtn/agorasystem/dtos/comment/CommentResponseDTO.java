@@ -10,12 +10,12 @@ import java.time.Instant;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CommentDTO {
+public class CommentResponseDTO {
 
     private Instant date;
     private String body;
 
-    public CommentDTO(Comment comment) {
+    public CommentResponseDTO(Comment comment) {
         date = comment.getDate();
         body = comment.getBody();
     }

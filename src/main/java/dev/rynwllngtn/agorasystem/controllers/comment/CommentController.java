@@ -1,6 +1,8 @@
 package dev.rynwllngtn.agorasystem.controllers.comment;
 
-import dev.rynwllngtn.agorasystem.dtos.comment.CommentDTO;
+import dev.rynwllngtn.agorasystem.dtos.comment.CommentCreateRequestDTO;
+import dev.rynwllngtn.agorasystem.dtos.comment.CommentResponseDTO;
+import dev.rynwllngtn.agorasystem.dtos.comment.CommentUpdateRequestDTO;
 import dev.rynwllngtn.agorasystem.entities.comment.Comment;
 import dev.rynwllngtn.agorasystem.services.comment.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/comments")
@@ -19,17 +20,17 @@ public class CommentController {
     CommentService commentService;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<CommentDTO> findById(@PathVariable String id) {
-        CommentDTO commentDTO = commentService.findById(id);
-        return ResponseEntity.ok().body(commentDTO);
+    public ResponseEntity<CommentResponseDTO> findById(@PathVariable String id) {
+        CommentResponseDTO commentResponseDTO = commentService.findById(id);
+        return ResponseEntity.ok().body(commentResponseDTO);
     }
 
     @PostMapping
-    public ResponseEntity<CommentDTO> insert(@RequestBody Comment comment) {
-        comment = commentService.insert(comment);
-        CommentDTO commentDTO = new CommentDTO(comment);
+    public ResponseEntity<CommentResponseDTO> insert(@RequestBody CommentCreateRequestDTO commentCreateRequestDTO) {
+        Comment comment = commentService.insert(commentCreateRequestDTO);
+        CommentResponseDTO commentResponseDTO = new CommentResponseDTO(comment);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(comment.getId()).toUri();
-        return ResponseEntity.created(uri).body(commentDTO);
+        return ResponseEntity.created(uri).body(commentResponseDTO);
     }
 
     @DeleteMapping(value = "/{id}")
@@ -39,9 +40,10 @@ public class CommentController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<CommentDTO> update(@RequestBody CommentDTO commentDTO, @PathVariable String id) {
-        commentService.update(id, commentDTO);
-        return ResponseEntity.ok().body(commentDTO);
+    public ResponseEntity<CommentResponseDTO> update(@RequestBody CommentUpdateRequestDTO commentUpdateRequestDTO, @PathVariable String id) {
+        Comment comment = commentService.update(id, commentUpdateRequestDTO);
+        CommentResponseDTO commentResponseDTO = new CommentResponseDTO(comment);
+        return ResponseEntity.ok().body(commentResponseDTO);
     }
 
 }

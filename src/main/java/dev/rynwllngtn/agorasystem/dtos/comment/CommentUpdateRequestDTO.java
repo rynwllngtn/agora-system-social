@@ -1,4 +1,4 @@
-package dev.rynwllngtn.agorasystem.dtos.post;
+package dev.rynwllngtn.agorasystem.dtos.comment;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,10 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PostCreateRequestDTO {
+public class CommentUpdateRequestDTO {
 
-    private String author;
-    private String title;
     private String body;
 
 }

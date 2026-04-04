@@ -1,6 +1,6 @@
 package dev.rynwllngtn.agorasystem.repositories.post;
 
-import dev.rynwllngtn.agorasystem.dtos.comment.CommentPostDTO;
+import dev.rynwllngtn.agorasystem.dtos.post.PostReferenceDTO;
 import dev.rynwllngtn.agorasystem.dtos.post.PostResponseDTO;
 import dev.rynwllngtn.agorasystem.entities.post.Post;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -20,6 +20,6 @@ public interface PostRepository extends MongoRepository<Post, String> {
     public List<PostResponseDTO> findPostsByAuthorId(String id);
 
     @Query(value = "{ '_id' : ?0 }", fields = "{ '_id': 1, 'body': 1 }")
-    public CommentPostDTO findCommentPostById(String id);
+    public Optional<PostReferenceDTO> findReferenceById(String id);
 
 }
