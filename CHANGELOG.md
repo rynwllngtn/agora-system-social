@@ -6,7 +6,7 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.
 
 ---
 
-## [0.3.1] - 2026-04-03
+## [0.3.2] - 2026-04-04
 
 ### Added
 - Anotações de validação (@NotBlank, @NotNull) com mensagens customizadas no `ProfileUpdateRequestDTO`, `PostUpdateRequestDTO` e `CommentUpdateRequestDTO` e integração com @Valid no endpoint *PUT*.
@@ -21,14 +21,14 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.
 - Retorno do endpoint GET /{id}/comments no `PostController` alterado para devolver uma lista de `CommentResponseDTO`.
 - Retorno do endpoint GET /{id}/posts no `ProfileController` alterado para devolver uma lista de `CommentResponseDTO`.
 - Retorno do endpoint GET /{id}/posts no `ProfileController` alterado para devolver uma lista de `PostResponseDTO`.
-- Nomeclatura DTOs `AuthorDTO` para `ProfileReferenceDTO` e `CommentPostDTO` para `PostReferenceDTO`, garantindo melhor clareza.
+- Nomenclatura DTOs `AuthorDTO` para `ProfileReferenceDTO` e `CommentPostDTO` para `PostReferenceDTO`, garantindo melhor clareza.
 
 ### Removed
 - DTOs `ProfilePostDTO` e `PostCommentDTO` não usados.
 
 ---
 
-## [Unreleased]
+## [0.3.1] - 2026-04-03
 
 ### Added
 - Criação dos endpoints de listagem para buscar todos os `Comment` relacionados a um `Post` ou `Profile` específico, garantindo o acesso aos dados após a remoção das listas embutidas nas entidades.
