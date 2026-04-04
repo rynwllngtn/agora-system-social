@@ -6,7 +6,7 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.
 
 ---
 
-## [Unreleased]
+## [0.3.1] - 2026-04-03
 
 ### Added
 - Criação dos endpoints de listagem para buscar todos os `Comment` relacionados a um `Post` ou `Profile` específico, garantindo o acesso aos dados após a remoção das listas embutidas nas entidades.
@@ -29,7 +29,7 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.
 
 ---
 
-## [v0.3.0] - 2026-04-01
+## [0.3.0] - 2026-04-01
 
 ### Added
 - Adicionado atributo className e getter em `ObjectNotFoundException`, possibilitando manuseio mais preciso.
