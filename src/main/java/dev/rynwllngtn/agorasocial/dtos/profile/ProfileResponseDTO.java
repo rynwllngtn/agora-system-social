@@ -1,10 +1,10 @@
 package dev.rynwllngtn.agorasocial.dtos.profile;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public record ProfileResponseDTO(
         String id,
         String userName,
-        Date birthDate,
+        LocalDate birthDate,
         boolean active
 ) {}

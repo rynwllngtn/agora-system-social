@@ -3,6 +3,7 @@ package dev.rynwllngtn.agorasocial.controllers.post;
 import dev.rynwllngtn.agorasocial.dtos.post.PostCreateRequestDTO;
 import dev.rynwllngtn.agorasocial.dtos.post.PostResponseDTO;
 import dev.rynwllngtn.agorasocial.services.post.PostService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<PostResponseDTO> insert(@RequestBody PostCreateRequestDTO createRequestDTO) {
+    public ResponseEntity<PostResponseDTO> insert(@Valid @RequestBody PostCreateRequestDTO createRequestDTO) {
         PostResponseDTO responseDTO = postService.insert(createRequestDTO);
         URI uri = ServletUriComponentsBuilder.
                   fromCurrentRequest().

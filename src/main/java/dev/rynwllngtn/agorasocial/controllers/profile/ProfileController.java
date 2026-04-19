@@ -3,6 +3,7 @@ package dev.rynwllngtn.agorasocial.controllers.profile;
 import dev.rynwllngtn.agorasocial.dtos.profile.ProfileCreateRequestDTO;
 import dev.rynwllngtn.agorasocial.dtos.profile.ProfileResponseDTO;
 import dev.rynwllngtn.agorasocial.services.profile.ProfileService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class ProfileController {
     }
 
     @PostMapping
-    public ResponseEntity<ProfileResponseDTO> insert(@RequestBody ProfileCreateRequestDTO createRequestDTO) {
+    public ResponseEntity<ProfileResponseDTO> insert(@Valid @RequestBody ProfileCreateRequestDTO createRequestDTO) {
         ProfileResponseDTO responseDTO = profileService.insert(createRequestDTO);
         URI uri = ServletUriComponentsBuilder.
                   fromCurrentRequest().

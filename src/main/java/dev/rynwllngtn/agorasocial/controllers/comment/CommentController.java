@@ -3,6 +3,7 @@ package dev.rynwllngtn.agorasocial.controllers.comment;
 import dev.rynwllngtn.agorasocial.dtos.comment.CommentCreateRequestDTO;
 import dev.rynwllngtn.agorasocial.dtos.comment.CommentResponseDTO;
 import dev.rynwllngtn.agorasocial.services.comment.CommentService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class CommentController {
     }
 
     @PostMapping
-    public ResponseEntity<CommentResponseDTO> insert(@RequestBody CommentCreateRequestDTO createRequestDTO) {
+    public ResponseEntity<CommentResponseDTO> insert(@Valid @RequestBody CommentCreateRequestDTO createRequestDTO) {
         CommentResponseDTO responseDTO = commentService.insert(createRequestDTO);
         URI uri = ServletUriComponentsBuilder.
                   fromCurrentRequest().
