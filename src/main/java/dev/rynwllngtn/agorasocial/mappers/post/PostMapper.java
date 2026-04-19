@@ -4,7 +4,9 @@ import dev.rynwllngtn.agorasocial.dtos.post.PostCreateRequestDTO;
 import dev.rynwllngtn.agorasocial.dtos.post.PostResponseDTO;
 import dev.rynwllngtn.agorasocial.dtos.profile.ProfileReferenceDTO;
 import dev.rynwllngtn.agorasocial.entities.post.Post;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PostMapper {
 
     public PostResponseDTO toResponseDTO(Post post) {

@@ -5,7 +5,9 @@ import dev.rynwllngtn.agorasocial.dtos.comment.CommentResponseDTO;
 import dev.rynwllngtn.agorasocial.dtos.post.PostReferenceDTO;
 import dev.rynwllngtn.agorasocial.dtos.profile.ProfileReferenceDTO;
 import dev.rynwllngtn.agorasocial.entities.comment.Comment;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CommentMapper {
 
     public CommentResponseDTO toResponseDTO(Comment comment) {

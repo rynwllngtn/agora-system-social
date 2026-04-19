@@ -3,7 +3,9 @@ package dev.rynwllngtn.agorasocial.mappers.profile;
 import dev.rynwllngtn.agorasocial.dtos.profile.ProfileCreateRequestDTO;
 import dev.rynwllngtn.agorasocial.dtos.profile.ProfileResponseDTO;
 import dev.rynwllngtn.agorasocial.entities.profile.Profile;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProfileMapper {
 
     public ProfileResponseDTO toResponseDTO(Profile profile) {

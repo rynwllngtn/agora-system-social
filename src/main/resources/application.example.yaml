@@ -1,10 +1,11 @@
+server:
+  port: 8081
+
 spring:
   application:
-    name: agora-system-social
+    name: agora-social
 
   mongodb:
-    host: localhost
-    port: 27017
-    database: [YOUR-DATABASE]
+    uri: mongodb://admin:admin@mongo-db:27017/agora-social?authSource=admin
     representation:
       uuid: standard

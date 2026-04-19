@@ -1,0 +1,38 @@
+services:
+
+  mongo-db:
+    image: mongo:8.2.6
+    container_name: agora-social-db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGO_INITDB_DATABASE: agora-social
+    healthcheck:
+      test: [ "CMD", "mongosh", "--eval", "db.adminCommand('ping').ok", "--quiet" ]
+      retries: 5
+      start_period: 30s
+      interval: 10s
+      timeout: 5s
+    ports:
+      - "27017:27017"
+    volumes:
+      - "mongodb_data:/data/db"
+
+  agora-social:
+    build: .
+    image: agora-social-api:0.0-1
+    container_name: agora-social-api
+    depends_on:
+      mongo-db:
+        condition: service_healthy
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://admin:admin@mongo-db:27017/agora-social?authSource=admin
+    deploy:
+      resources:
+        limits:
+          memory: 1024m
+
+volumes:
+  mongodb_data:
