@@ -17,6 +17,6 @@ WORKDIR /app
 
 COPY --from=builder /app/target/*.jar agora-social-api.jar
 
-EXPOSE 8080
+EXPOSE 8081
 
 ENTRYPOINT ["java", "-jar", "agora-social-api.jar"]

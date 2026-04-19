@@ -13,7 +13,7 @@ import java.time.Instant;
 @Getter
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Document
+@Document(collection = "posts")
 public class Post {
 
     @EqualsAndHashCode.Include

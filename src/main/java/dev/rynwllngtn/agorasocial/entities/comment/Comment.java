@@ -14,7 +14,7 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Document
+@Document(collection = "comments")
 public class Comment {
 
     @EqualsAndHashCode.Include

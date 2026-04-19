@@ -10,7 +10,7 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Document
+@Document(collection = "profiles")
 public class Profile {
 
     @EqualsAndHashCode.Include
